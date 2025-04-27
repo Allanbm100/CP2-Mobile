@@ -1,15 +1,18 @@
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { RootStackParamList } from '../navigation/RootNavigator';
 
-interface Props {
-  onGoBackHome?: () => void;
-}
+type DetailScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Details'>;
 
-export const DetailScreen: React.FC<Props> = ({ onGoBackHome }) => {
+export default function DetailScreen() {
+  const navigation = useNavigation<DetailScreenNavigationProp>();
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Esta é a tela de detalhes.</Text>
-      <TouchableOpacity style={styles.button} onPress={onGoBackHome}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
         <Text style={styles.buttonText}>Voltar para Home</Text>
       </TouchableOpacity>
     </View>

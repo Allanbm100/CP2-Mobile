@@ -1,19 +1,22 @@
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { RootStackParamList } from '../navigation/RootNavigator';
 
-interface Props {
-  onNavigateToPerfil?: () => void;
-  onNavigateToDetalhes?: () => void;
-}
+type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
 
-export const HomeScreen: React.FC<Props> = ({ onNavigateToPerfil, onNavigateToDetalhes }) => {
+export default function HomeScreen() {
+  
+  const navigation = useNavigation<HomeScreenNavigationProp>();
+  
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Bem-vindo à Home!</Text>
-      <TouchableOpacity style={styles.button} onPress={onNavigateToPerfil}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Profile', )}>
         <Text style={styles.buttonText}>Ir para Perfil</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={onNavigateToDetalhes}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Details')}>
         <Text style={styles.buttonText}>Ir para Detalhes</Text>
       </TouchableOpacity>
     </View>

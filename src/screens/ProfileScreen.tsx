@@ -1,15 +1,18 @@
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { RootStackParamList } from '../navigation/RootNavigator';
 
-interface Props {
-  onGoBackHome?: () => void;
-}
+type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Profile'>;
 
-export const ProfileScreen: React.FC<Props> = ({ onGoBackHome }) => {
+export default function ProfileScreen() {
+  const navigation = useNavigation<ProfileScreenNavigationProp>();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Bem-vindo ao seu perfil!</Text>
-      <TouchableOpacity style={styles.button} onPress={onGoBackHome}>
+      <Text style={styles.text}>Esse é o seu perfil.</Text>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
         <Text style={styles.buttonText}>Voltar para Home</Text>
       </TouchableOpacity>
     </View>

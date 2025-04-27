@@ -1,14 +1,20 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen } from "../screens/HomeScreen";
-import { ProfileScreen } from "../screens/ProfileScreen";
-import { DetailScreen } from "../screens/DetailScreen";
+import ProfileScreen from "../screens/ProfileScreen";
+import DetailScreen from "../screens/DetailScreen";
+import HomeScreen from "../screens/HomeScreen";
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  Home: undefined;
+  Profile: undefined;
+  Details: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function RootNavigator() {
   return (
-    <NavigationContainer>
+    <NavigationContainer> 
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
